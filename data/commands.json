@@ -1,0 +1,345 @@
+[
+  {
+    "id": "1750000631836",
+    "command": "kubectl get pods -n brpioneer | grep auto-register-app | awk '{print $1}' | while read -r pod; do kubectl logs -n brpioneer \"$pod\" | grep -i erro > /tmp/auto-register-app.LOG; done",
+    "description": "FILTRA NO LOG ERROS DOS PODS",
+    "createdAt": "2025-06-15T15:17:11.836Z",
+    "updatedAt": "2025-06-28T14:47:24.750Z"
+  },
+  {
+    "id": "1751121950750",
+    "command": "kubectl get secret onefinancial -n ingress-nginx -o yaml >onefinancial-28_06_2025.yaml",
+    "description": "BACKUP DA SECRET",
+    "createdAt": "2025-06-28T14:45:50.750Z"
+  },
+  {
+    "id": "1751121971938",
+    "command": "kubectl delete secret onefinancial -n ingress-nginx",
+    "description": "APAGA SECRET ATUAL",
+    "createdAt": "2025-06-28T14:46:11.938Z"
+  },
+  {
+    "id": "1751121997779",
+    "command": "kubectl create secret tls onefinancial --key=wildcard_onefinancial_com_br.key --cert=wildcard_onefinancial_com_br_bundle.crt -n ingress-nginx",
+    "description": "GERA NOVA SECRET - .crt é a tripona",
+    "createdAt": "2025-06-28T14:46:37.779Z",
+    "updatedAt": "2025-06-28T15:44:38.577Z"
+  },
+  {
+    "id": "1751122176277",
+    "command": "rsync -a -e \"ssh -o StrictHostKeyChecking=no\" --progress --rsync-path=\"sudo rsync\" /arquivos/ vivadmin@172.21.9.22:/arquivos/",
+    "description": "SINCRONIZA PASTAS, ARQUIVOS ETC... MANTEM PERMISSOES E ATRIBUTOS",
+    "createdAt": "2025-06-28T14:49:36.277Z",
+    "updatedAt": "2025-07-01T03:44:18.523Z"
+  },
+  {
+    "id": "1751122317852",
+    "command": "docker run --rm -v /var/run/docker.sock:/var/run/docker.sock assaflavie/runlike NOME-DO-CONTAINER",
+    "description": "MOSTRA COMANDO DE SUBIDA DE UM CONTAINER",
+    "createdAt": "2025-06-28T14:51:57.852Z"
+  },
+  {
+    "id": "2248920879898884",
+    "command": "kubectl get pods -A | grep NOME_DO_POD",
+    "description": "LISTA PODS EM TODOS OS NAMESPACES",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "2276908925232618",
+    "command": "kubectl get deploy -A | grep NOME_DO_DEPLOY",
+    "description": "LISTA DEPLOYS EM TODOS OS NAMESPACES",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "7390282313252520",
+    "command": "kubectl get statefulset -A | grep NOME_DO_STATEFULSET",
+    "description": "LISTA STATEFULSETS EM TODOS OS NAMESPACES",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "2138846254121325",
+    "command": "kubectl get ingress -A",
+    "description": "LISTA TODOS OS INGRESS",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "3281459564896154",
+    "command": "kubectl get svc -A | grep NOME_DO_SERVICE",
+    "description": "LISTA SERVIÇOS EM TODOS OS NAMESPACES",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "2108746095556695",
+    "command": "kubectl get nodes",
+    "description": "LISTA OS NODES DO CLUSTER",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "2759249222089808",
+    "command": "kubectl get all -A -o yaml > backupall.yaml",
+    "description": "BACKUP COMPLETO EM YAML",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "2392464142375152",
+    "command": "kubectl describe pod NOME_DO_POD -n NAMESPACE",
+    "description": "DESCREVE UM POD",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "1590792747622055",
+    "command": "kubectl describe deploy NOME_DO_DEPLOY -n NAMESPACE",
+    "description": "DESCREVE UM DEPLOY",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "2378321644312179",
+    "command": "kubectl describe statefulset NOME_DO_STATEFULSET -n NAMESPACE",
+    "description": "DESCREVE UM STATEFULSET",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "4673865238805611",
+    "command": "kubectl describe node NOME_DO_NODE",
+    "description": "DESCREVE UM NODE",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "2912319280885998",
+    "command": "kubectl top nodes",
+    "description": "MOSTRA USO DE RECURSOS DOS NODES",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "8779841537997062",
+    "command": "kubectl top pod -n NAMESPACE",
+    "description": "MOSTRA USO DE RECURSOS DOS PODS",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "4498153282008165",
+    "command": "kubectl logs -f NOME_DO_POD -n NAMESPACE",
+    "description": "MOSTRA LOGS DO POD EM TEMPO REAL",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "1344959372027725",
+    "command": "kubectl logs -f NOME_DO_POD -n NAMESPACE | grep -i erro",
+    "description": "FILTRA ERROS NOS LOGS DO POD",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "2162984860332331",
+    "command": "kubectl get pods -n NAMESPACE | grep APP | awk '{print $1}' | while read -r pod; do kubectl logs -n NAMESPACE \"$pod\" | grep -i erro; done",
+    "description": "FILTRA ERROS EM TODOS OS PODS DE UMA APP",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "6588146387081547",
+    "command": "kubectl get scaledobject -A | grep NOME_DO_WORKLOAD",
+    "description": "LISTA SCALEDOBJECTS",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "2557790591850832",
+    "command": "kubectl get hpa -A | grep NOME_DO_WORKLOAD",
+    "description": "LISTA HPAs",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "1792752458878945",
+    "command": "kubectl edit scaledobject NOME_DO_WORKLOAD -n NAMESPACE",
+    "description": "EDITA SCALEDOBJECT",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "1578028023298386",
+    "command": "kubectl edit hpa NOME_DO_HPA -n NAMESPACE",
+    "description": "EDITA HPA",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "2872836356452881",
+    "command": "kubectl edit cm NOME_DO_CONFIGMAP -n NAMESPACE",
+    "description": "EDITA CONFIGMAP",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "1806369245989195",
+    "command": "kubectl edit secrets NOME_DO_SECRET -n NAMESPACE",
+    "description": "EDITA SECRET",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "3227137143031583",
+    "command": "kubectl edit deploy NOME_DO_DEPLOY -n NAMESPACE",
+    "description": "EDITA DEPLOY",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "8092510906590188",
+    "command": "kubectl edit statefulset NOME_DO_STATEFULSET -n NAMESPACE",
+    "description": "EDITA STATEFULSET",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "2264812402215259",
+    "command": "kubectl rollout restart deploy NOME_DO_DEPLOY -n NAMESPACE",
+    "description": "REINICIA DEPLOY",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "1981651426364626",
+    "command": "kubectl rollout restart statefulset NOME_DO_STATEFULSET -n NAMESPACE",
+    "description": "REINICIA STATEFULSET",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "1965794651155501",
+    "command": "kubectl rollout restart daemonset NOME_DO_DAEMONSET -n NAMESPACE",
+    "description": "REINICIA DAEMONSET",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "2493792807132013",
+    "command": "kubectl exec -it NOME_DO_POD -n NAMESPACE -- bash",
+    "description": "ACESSA O POD COM BASH",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "2947346492854741",
+    "command": "kubectl scale deploy NOME_DO_DEPLOY -n NAMESPACE --replicas=NUM",
+    "description": "ESCALA DEPLOY",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "2034858665213758",
+    "command": "kubectl scale statefulset NOME_DO_STATEFULSET -n NAMESPACE --replicas=NUM",
+    "description": "ESCALA STATEFULSET",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "3000156362182221",
+    "command": "kubectl delete pod NOME_DO_POD -n NAMESPACE",
+    "description": "DELETA POD",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "1964541169916827",
+    "command": "kubectl delete deploy NOME_DO_DEPLOY -n NAMESPACE",
+    "description": "DELETA DEPLOY",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "1793118108026991",
+    "command": "kubectl delete daemonset NOME_DO_DAEMONSET -n NAMESPACE",
+    "description": "DELETA DAEMONSET",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "8378377647628006",
+    "command": "kubectl apply -f arquivo.yaml",
+    "description": "APLICA ARQUIVO YAML",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "1036566027704337",
+    "command": "kubectl get beat NOME_DO_BEAT -n monitoring",
+    "description": "LISTA BEAT",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "2669142050824510",
+    "command": "kubectl get daemonset -n monitoring | grep NOME_DA_APP",
+    "description": "LISTA DAEMONSET DE MONITORAMENTO",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "1452016225657229",
+    "command": "kafka-configs.sh --bootstrap-server 127.0.0.1:9092 --entity-type topics --alter --entity-name NOME_TOPICO --add-config retention.ms=VALOR",
+    "description": "ALTERA RETENTION DE TÓPICO KAFKA",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "1033984075975544",
+    "command": "kafka-topics.sh --bootstrap-server 127.0.0.1:9092 --alter --topic NOME_TOPICO --partitions NUMERO",
+    "description": "ALTERA PARTIÇÕES DE TÓPICO KAFKA",
+    "createdAt": "2025-06-28T15:13:01.804420Z",
+    "updatedAt": "2025-06-28T15:18:53.314Z"
+  },
+  {
+    "id": "1558771939604513",
+    "command": "kubectl get cm -n NAMESPACE",
+    "description": "LISTA CONFIGMAPS",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "1130084970778902",
+    "command": "kubectl get configmap -n NAMESPACE",
+    "description": "LISTA CONFIGMAPS",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "1183011431800235",
+    "command": "kubectl get scaledobject -n NAMESPACE",
+    "description": "LISTA SCALEDOBJECTS",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "2519953219227300",
+    "command": "kubectl get statefulset -n NAMESPACE -o wide",
+    "description": "LISTA STATEFULSETS COM DETALHES",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "2681964921770545",
+    "command": "kubectl get deploy -n NAMESPACE -o wide",
+    "description": "LISTA DEPLOYS COM DETALHES",
+    "createdAt": "2025-06-28T15:13:01.804420Z"
+  },
+  {
+    "id": "1751162698740",
+    "command": "kubectl config current-context",
+    "description": "MOSTRA O CLUSTER EM USO DO KUBECTL",
+    "createdAt": "2025-06-29T02:04:58.740Z"
+  },
+  {
+    "id": "1751162732509",
+    "command": "kubectl config get-contexts",
+    "description": "LISTA OS CONTEXTOS DISPONIVEIS",
+    "createdAt": "2025-06-29T02:05:32.509Z"
+  },
+  {
+    "id": "1751162786016",
+    "command": "kubectl config use-context NOME_CONTEXTO",
+    "description": "USA O CONTEXTO ESCOLHIDO",
+    "createdAt": "2025-06-29T02:06:26.016Z"
+  },
+  {
+    "id": "1751340799476",
+    "command": "docker save -o NOME_IMAGE.tar NOME_IMAGE:VERSAO",
+    "description": "SALVA IMAGE EXISTENTE NO DOCKER",
+    "createdAt": "2025-07-01T03:33:19.476Z",
+    "updatedAt": "2025-07-01T03:49:59.291Z"
+  },
+  {
+    "id": "1751340850087",
+    "command": "docker load -i NOME_IMAGE.tar",
+    "description": "CARREGA IMAGE NO DOCKER",
+    "createdAt": "2025-07-01T03:34:10.087Z"
+  },
+  {
+    "id": "1751380061712",
+    "command": "db.getCollection('santanderredIndex').count({})",
+    "description": "CONTA O TOTAL DE ARTEFATOS ECM NO MONGO (EX: SIM)",
+    "createdAt": "2025-07-01T14:27:41.712Z",
+    "updatedAt": "2025-07-02T04:00:07.799Z"
+  },
+  {
+    "id": "1751457766244",
+    "command": "kubectl exec -it NOME_DO_POD -n NAMESPACE -- /bin/bash",
+    "description": "CONECTAR NO POD DO KAFKA",
+    "createdAt": "2025-07-02T12:02:46.244Z",
+    "updatedAt": "2025-07-02T12:12:26.678Z"
+  }
+]

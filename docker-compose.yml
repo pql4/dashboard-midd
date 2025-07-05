@@ -1,0 +1,18 @@
+services:
+  dashboard-midd:
+    build: .
+    container_name: dashboard-midd
+    ports:
+      - "4001:4001"
+    volumes:
+      - ./data:/opt/dashboard-midd/data
+      - ./export:/opt/dashboard-midd/export
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4001/api/servers"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s 
