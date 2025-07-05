@@ -59,20 +59,6 @@ Dashboard unificado que combina a funcionalidade de gerenciamento de servidores 
 - Diretório: `/opt/dashboard-midd/export/`
 - Arquivos CSV exportados pelo dashboard de servidores
 
-## APIs
-
-### Servidores
-- `GET /api/servers` - Listar servidores
-- `POST /api/servers` - Salvar servidores
-- `POST /api/export` - Exportar CSV
-- `GET /api/download/:filename` - Download de arquivo CSV
-
-### Comandos
-- `GET /api/commands` - Listar comandos
-- `POST /api/commands` - Adicionar comando
-- `PUT /api/commands/:id` - Atualizar comando
-- `DELETE /api/commands/:id` - Deletar comando
-
 ## Navegação
 
 - **Lista Servidores** - Dashboard de gerenciamento de servidores
