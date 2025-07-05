@@ -24,6 +24,10 @@ app.use(express.static('dist'));
 // Função para garantir que o arquivo existe
 async function ensureDataFile(filePath, defaultData = []) {
   try {
+    // Ensure the parent directory exists first
+    const dir = path.dirname(filePath);
+    await fs.mkdir(dir, { recursive: true });
+    
     await fs.access(filePath);
   } catch (error) {
     // Se o arquivo não existe, criar com array vazio
@@ -399,4 +403,4 @@ async function startServer() {
   }
 }
 
-startServer(); 
+startServer();
